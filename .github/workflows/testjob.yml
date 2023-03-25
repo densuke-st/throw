@@ -22,6 +22,7 @@ jobs:
               uses: actions/download-artifact@v3
               with:
                 name: data
+                path: /tmp/
             - name: read file
               run: |
                 echo "read: $(cat /tmp/hello)"
