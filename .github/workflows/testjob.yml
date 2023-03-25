@@ -1,0 +1,18 @@
+on:
+    workflow_dispatch:
+
+
+jobs:
+    first:
+        runs-on: ubuntu-latest
+        steps:
+            - name: set file
+              run: |
+                echo "Hello" > /tmp/hello
+    second:
+        runs-on: ubuntu-latest
+        needs: first
+        steps:
+            - name: read file
+              run: |
+                echo "read: $(cat /tmp/hello)"
