@@ -9,10 +9,19 @@ jobs:
             - name: set file
               run: |
                 echo "Hello" > /tmp/hello
+            - name: upload
+              uses: actions/upload-artifact@v3
+              with:
+                name: data
+                path: /tmp/hello
     second:
         runs-on: ubuntu-latest
         needs: first
         steps:
+            - name: download
+              uses: actions/download-artifact@v3
+              with:
+                name: data
             - name: read file
               run: |
                 echo "read: $(cat /tmp/hello)"
